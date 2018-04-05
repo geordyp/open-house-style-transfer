@@ -11,14 +11,19 @@
 <button id="capture">Capture</button>
 <canvas id="canvas" width=320 height=240></canvas>
 
-<form class="upload-image" enctype="multipart/form-data" action="{% url 'views.result' %}" method="post">{% csrf_token %}
+<form class="upload-image" enctype="multipart/form-data" action="{% url 'views.form' %}" method="post">{% csrf_token %}
   <!-- TODO error handling for the whole form -->
 
-  <input type="text" name="snapshot" id="hidden_image_field" hidden>
+  <input type="text" name="snapShot" id="hidden_image_field" hidden>
 
   <!-- Image upload incase camera isn't working -->
   <p>If you prefer to not use your camera, please upload an image.</p>
-  <input type="file" name="fileupload" accept="image/*">
+  <input type="file" name="fileUpload" accept="image/*">
+
+  {% if errorImage %}
+    <div class="error">{{errorImage}}</div>
+    <br>
+  {% endif %}
 
   <h2>Now, please select the style you would like to transfer</h2>
 
@@ -44,6 +49,11 @@
     <input type="radio" name="styleOption" value="vangogh">Vincent van Gogh<br>
     <input type="radio" name="styleOption" value="navi">Na'vi<br>
   </div>
+
+  {% if errorStyle %}
+    <div class="error">{{errorStyle}}</div>
+    <br>
+  {% endif %}
 
   <input type="submit" value="submit">
 </form>
