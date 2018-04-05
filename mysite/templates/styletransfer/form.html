@@ -1,0 +1,39 @@
+{% extends 'styletransfer/base.html' %}
+{% block 'body' %}
+
+<!-- This step will get the selfie image from the user -->
+<h2>First, we need an image of you</h2>
+
+<!-- Get a snapshot of the user-->
+
+<!-- Image upload incase camera isn't working -->
+<form class="upload-image" enctype="multipart/form-data" action="{% url 'styletransfer.views.result' %}" method="post">{% csrf_token %}
+  <input type="file" name="userImage" accept="image/*">
+
+<!-- This step will allow the user to select the style they want -->
+
+<h2>Now, please select the style you would like to transfer</h2>
+
+<!-- Options -->
+<figure>
+  <img src="http://via.placeholder.com/200x280">
+  <figcaption>Mona Lisa</figcaption>
+</figure>
+
+<figure>
+  <img src="http://via.placeholder.com/200x280">
+  <figcaption>Vincent van Gogh</figcaption>
+</figure>
+
+<figure>
+  <img src="http://via.placeholder.com/200x280">
+  <figcaption>Avatar Na'vi</figcaption>
+</figure>
+
+<!-- Selection -->
+  <input type="radio" name="style" value="monalisa">Mona Lisa<br>
+  <input type="radio" name="style" value="vangogh">Vincent van Gogh<br>
+  <input type="radio" name="style" value="navi">Na'vi<br>
+  <input type="submit" value="submit">
+</form>
+{% endblock %}
