@@ -4,11 +4,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'styletransfer/css/main.css' %}">
   <title>Style Transfer</title>
 </head>
 <body>
-  {% block 'body' %}
-  {% endblock %}
+  <div class="header-bar">
+    <div class="header-title">
+      SIGA AI Open House Project: Style Transfer
+    </div>
+  </div>
+  <div class="container">
+    {% block 'body' %}
+    {% endblock %}
+  </div>
 </body>
 </html>
