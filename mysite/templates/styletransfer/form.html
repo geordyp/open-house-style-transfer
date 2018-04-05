@@ -1,47 +1,53 @@
+<!-- This page displays the form for user input -->
+
 {% extends 'styletransfer/base.html' %}
 {% block 'body' %}
 
-<!-- This step will get the selfie image from the user -->
 <h2>First, we need an image of you</h2>
-
 <!-- Get a snapshot of the user-->
 <!-- TODO add a filter over the video to show user proper positioning-->
+<!-- TODO remove bottom bar from video player -->
 <video id="player" controls autoplay></video>
 <button id="capture">Capture</button>
 <canvas id="canvas" width=320 height=240></canvas>
 
-<!-- TODO add drag and drop functionality -->
+<form class="upload-image" enctype="multipart/form-data" action="{% url 'views.result' %}" method="post">{% csrf_token %}
+  <!-- TODO error handling for the whole form -->
 
-<!-- Image upload incase camera isn't working -->
-<form class="upload-image" enctype="multipart/form-data" action="{% url 'styletransfer.views.result' %}" method="post">{% csrf_token %}
-  <input type="file" name="userImage" accept="image/*">
+  <input type="text" name="snapshot" id="hidden_image_field" hidden>
 
-<!-- This step will allow the user to select the style they want -->
+  <!-- Image upload incase camera isn't working -->
+  <p>If you prefer to not use your camera, please upload an image.</p>
+  <input type="file" name="fileUpload" accept="image/*">
 
-<h2>Now, please select the style you would like to transfer</h2>
+  <h2>Now, please select the style you would like to transfer</h2>
 
-<!-- Options -->
-<figure>
-  <img src="http://via.placeholder.com/200x280">
-  <figcaption>Mona Lisa</figcaption>
-</figure>
+  <div class="style-options">
+    <figure>
+      <img src="http://via.placeholder.com/200x280">
+      <figcaption>Mona Lisa</figcaption>
+    </figure>
 
-<figure>
-  <img src="http://via.placeholder.com/200x280">
-  <figcaption>Vincent van Gogh</figcaption>
-</figure>
+    <figure>
+      <img src="http://via.placeholder.com/200x280">
+      <figcaption>Vincent van Gogh</figcaption>
+    </figure>
 
-<figure>
-  <img src="http://via.placeholder.com/200x280">
-  <figcaption>Avatar Na'vi</figcaption>
-</figure>
+    <figure>
+      <img src="http://via.placeholder.com/200x280">
+      <figcaption>Avatar Na'vi</figcaption>
+    </figure>
+  </div>
 
-<!-- Selection -->
-  <input type="radio" name="style" value="monalisa">Mona Lisa<br>
-  <input type="radio" name="style" value="vangogh">Vincent van Gogh<br>
-  <input type="radio" name="style" value="navi">Na'vi<br>
+  <div class="style-selection">
+    <input type="radio" name="styleOption" value="monalisa">Mona Lisa<br>
+    <input type="radio" name="styleOption" value="vangogh">Vincent van Gogh<br>
+    <input type="radio" name="styleOption" value="navi">Na'vi<br>
+  </div>
+
   <input type="submit" value="submit">
 </form>
+
 
 <script>
   const player = document.getElementById('player');
@@ -56,6 +62,8 @@
   captureButton.addEventListener('click', () => {
     // Draw the video frame to the canvas.
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
+    var dataURL = document.getElementById('canvas').toDataURL("image/png");
+    document.getElementById('hidden_image_field').value = dataURL;
   });
 
   // Attach the video stream to the video element and autoplay.

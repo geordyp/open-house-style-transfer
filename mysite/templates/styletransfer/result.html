@@ -1,12 +1,18 @@
 {% extends 'styletransfer/base.html' %}
 {% block 'body' %}
+{% load staticfiles %}
 
 <!-- This final step will display the result and recap steps -->
 <h2>ta-da</h2>
 <br>
 <br>
+<img src={% static 'styletransfer/images/userImage.png' %}>
+<br>
+{{styleSelection}}
+<br>
+<img src="{{result}}">
 <br>
 <br>
-<a href="{% url 'styletransfer.views.index' %}">Back to the Beginning</a>
+<a href="{% url 'views.index' %}">Back to the Beginning</a>
 <!-- Allow the user to simply select another style and run again -->
 {% endblock %}
