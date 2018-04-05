@@ -4,6 +4,7 @@ from django.urls import reverse
 
 import re
 import base64
+import os.path
 
 
 def IndexView(request):
@@ -22,7 +23,7 @@ def FormView(request):
             return render(request,
                           'styletransfer/form.html',
                           {
-                            'errorStyle':"Please select a style"
+                            'errorStyle':"Error: Please select a style"
                           },
                           status=400)
         else:
@@ -30,11 +31,11 @@ def FormView(request):
 
         if 'snapShot' in request.POST and request.POST['snapShot'] != "":
             imageData = re.search(r'base64,(.*)', request.POST['snapShot']).group(1)
-            userImage = open('static/styletransfer/images/userImage.png', 'wb')
+            userImage = open('static/styletransfer/images/input.png', 'wb')
             userImage.write(base64.b64decode(imageData))
             userImage.close()
         elif 'fileUpload' in request.FILES and request.FILES['fileUpload'] is not None:
-            userImage = open('static/styletransfer/images/userImage.png', 'wb')
+            userImage = open('static/styletransfer/images/input.png', 'wb')
             userImage.writelines(request.FILES['fileUpload'].readlines())
             userImage.close()
         else:
@@ -58,13 +59,12 @@ def ResultView(request):
     """
     Displays the result of the style transfer
     """
-    # if there is a userImage, styleSelection, and resultImage
-    if 'styleSelected' in request.session:
+    p = "static/styletransfer/images/"
+    if 'styleSelected' in request.session and os.path.isfile(p + "input.png"):# and os.path.isfile(p + "output.png"):
         return render(request,
                       'styletransfer/result.html',
                       {
-                        'styleSelection':request.session['styleSelected'],
-                        'result':'http://via.placeholder.com/200x280'
+                        'style':request.session['styleSelected']
                       })
     else:
         return HttpResponseRedirect(reverse('views.form', args=()))

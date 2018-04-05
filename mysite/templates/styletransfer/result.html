@@ -1,17 +1,17 @@
+<!-- This page display the result and recap process -->
+
 {% extends 'styletransfer/base.html' %}
 {% block 'body' %}
 {% load staticfiles %}
 
-<!-- This final step will display the result and recap steps -->
-<h2>ta-da</h2>
-<br>
-<br>
-<img src={% static 'styletransfer/images/userImage.png' %}>
-<br>
-{{styleSelection}}
-<br>
-<img src="{{result}}">
-<br>
+<h2>Result</h2>
+<div class="result">
+  <img class="result-input" src={% static 'styletransfer/images/input.png' %}>
+  <!-- <img class="result-style" src={% static 'styletransfer/images/{{style}}.png' %}> -->
+  <img src="http://via.placeholder.com/200x280">
+  <!-- <img class="result-output" src={% static 'styletransfer/images/result.png' %}> -->
+  <img src="http://via.placeholder.com/420x320">
+</div>
 <br>
 <a href="{% url 'views.index' %}">Back to the Beginning</a>
 <!-- Allow the user to simply select another style and run again -->
