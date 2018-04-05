@@ -5,6 +5,12 @@
 <h2>First, we need an image of you</h2>
 
 <!-- Get a snapshot of the user-->
+<!-- TODO add a filter over the video to show user proper positioning-->
+<video id="player" controls autoplay></video>
+<button id="capture">Capture</button>
+<canvas id="canvas" width=320 height=240></canvas>
+
+<!-- TODO add drag and drop functionality -->
 
 <!-- Image upload incase camera isn't working -->
 <form class="upload-image" enctype="multipart/form-data" action="{% url 'styletransfer.views.result' %}" method="post">{% csrf_token %}
@@ -36,4 +42,26 @@
   <input type="radio" name="style" value="navi">Na'vi<br>
   <input type="submit" value="submit">
 </form>
+
+<script>
+  const player = document.getElementById('player');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  const captureButton = document.getElementById('capture');
+
+  const constraints = {
+    video: true,
+  };
+
+  captureButton.addEventListener('click', () => {
+    // Draw the video frame to the canvas.
+    context.drawImage(player, 0, 0, canvas.width, canvas.height);
+  });
+
+  // Attach the video stream to the video element and autoplay.
+  navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => {
+      player.srcObject = stream;
+    });
+</script>
 {% endblock %}
