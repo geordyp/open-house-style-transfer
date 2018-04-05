@@ -5,27 +5,30 @@
 
 <h2>First, we need an image of you</h2>
 <!-- Get a snapshot of the user-->
-<!-- TODO add a filter over the video to show user proper positioning-->
 <!-- TODO remove bottom bar from video player -->
-<video id="player" controls autoplay></video>
-<button id="capture">Capture</button>
-<canvas id="canvas" width=320 height=240></canvas>
+<div class="capture">
+  <video class="webcam-video" id="player" autoplay></video>
+  <button class="capture-button" id="capture" style="font-size:20px;">Capture</button>
+  <canvas class="capture-preview" id="canvas" width=420 height=320></canvas>
+</div>
 
 <form class="upload-image" enctype="multipart/form-data" action="{% url 'views.form' %}" method="post">{% csrf_token %}
-  <!-- TODO error handling for the whole form -->
 
   <input type="text" name="snapShot" id="hidden_image_field" hidden>
 
   <!-- Image upload incase camera isn't working -->
-  <p>If you prefer to not use your camera, please upload an image.</p>
-  <input type="file" name="fileUpload" accept="image/*">
+  <p>
+    If you are not using your camera, please upload an image:
+    &nbsp;&nbsp;&nbsp;<input type="file" name="fileUpload" accept="image/*" style="font-size:13px;">
+  </p>
 
   {% if errorImage %}
     <div class="error">{{errorImage}}</div>
     <br>
   {% endif %}
 
-  <h2>Now, please select the style you would like to transfer</h2>
+  <br>
+  <h2>Now, please select the image with the style you wish to transfer</h2>
 
   <div class="style-options">
     <figure>
@@ -42,12 +45,12 @@
       <img src="http://via.placeholder.com/200x280">
       <figcaption>Avatar Na'vi</figcaption>
     </figure>
-  </div>
 
-  <div class="style-selection">
-    <input type="radio" name="styleOption" value="monalisa">Mona Lisa<br>
-    <input type="radio" name="styleOption" value="vangogh">Vincent van Gogh<br>
-    <input type="radio" name="styleOption" value="navi">Na'vi<br>
+    <div class="style-selection">
+      <input type="radio" name="styleOption" value="monalisa">Mona Lisa<br>
+      <input type="radio" name="styleOption" value="vangogh">Vincent van Gogh<br>
+      <input type="radio" name="styleOption" value="navi">Na'vi<br>
+    </div>
   </div>
 
   {% if errorStyle %}
@@ -55,7 +58,8 @@
     <br>
   {% endif %}
 
-  <input type="submit" value="submit">
+  <br>
+  <button class="submit" style="font-size:20px;">Submit</button>
 </form>
 
 

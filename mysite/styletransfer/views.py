@@ -41,7 +41,7 @@ def FormView(request):
             return render(request,
                           'styletransfer/form.html',
                           {
-                            'errorImage':"Please take a picture or upload an image"
+                            'errorImage':"Error: Please take a picture or upload an image"
                           },
                           status=400)
 
