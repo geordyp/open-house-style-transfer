@@ -24,19 +24,28 @@ def ResultView(request):
     """
     Displays the result of the style transfer
     """
-    if request.method == "POST":
-        # TODO further validate input
-        if "styleOption" not in request.POST or "snapshot" not in request.POST and "fileUpload" not in request.POST:
-           return HttpResponseRedirect(reverse('views.form', args=()))
+    if request.method == 'POST':
+        if 'styleOption' not in request.POST:
+            # TODO add error message
+            return HttpResponseRedirect(reverse('views.form', args=()))
 
-        imgstr = re.search(r'base64,(.*)', request.POST['snapshot']).group(1)
-        output = open('static/styletransfer/images/userImage.png', 'wb')
-        output.write(base64.b64decode(imgstr))
-        output.close()
+        if 'snapshot' in request.POST and request.POST['snapshot'] != "":
+            imageData = re.search(r'base64,(.*)', request.POST['snapshot']).group(1)
+            userImage = open('static/styletransfer/images/userImage.png', 'wb')
+            userImage.write(base64.b64decode(imageData))
+            userImage.close()
+        elif 'fileupload' in request.FILES and request.FILES['fileupload'] is not None:
+            userImage = open('static/styletransfer/images/userImage.png', 'wb')
+            userImage.writelines(request.FILES['fileupload'].readlines())
+            userImage.close()
+        else:
+            # TODO add error message
+            return HttpResponseRedirect(reverse('views.form', args=()))
 
+        #########################
         # TODO run style transfer
+        #########################
 
-        # userImage = request.POST['snapshot'] if "snapshot" in request.POST else request.POST['fileUpload']
         return render(request,
                       'styletransfer/result.html',
                       {
