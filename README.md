@@ -12,5 +12,6 @@ Open house project for the SIGAI club
 
 
 1. Change to the "mysite" directory: `cd mysite`
-2. Run the server: `python3 manage.py runserver 0:5000`
-3. Open a browser and navigate to "localhost:5000/styletransfer/"
+2. Apply all migrations: `python3 manage.py migrate`
+3. Run the server: `python3 manage.py runserver 0:5000`
+4. Open a browser and navigate to "localhost:5000/styletransfer/"
