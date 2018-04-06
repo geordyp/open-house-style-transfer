@@ -76,7 +76,7 @@
   captureButton.addEventListener('click', () => {
     // Draw the video frame to the canvas.
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
-    var dataURL = document.getElementById('canvas').toDataURL("image/png");
+    var dataURL = document.getElementById('canvas').toDataURL("image/jpg");
     document.getElementById('hidden_image_field').value = dataURL;
   });
 
