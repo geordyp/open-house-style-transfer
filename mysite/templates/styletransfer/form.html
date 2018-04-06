@@ -32,32 +32,29 @@
   <h2>Now, please select a Style Image.</h2>
 
   <div class="style-options">
-    <figure class="style-figure">
+    <input type="radio" name="styleOption" value="candy" style="position:relative; top:263px;">
+    <figure>
       <img class="style" src="{% static 'styletransfer/images/styles/candy.jpg'%}">
       <figcaption>Candy</figcaption>
     </figure>
 
+    <input type="radio" name="styleOption" value="mosaic" style="position:relative; top:222px;">
     <figure>
       <img class="style" src="{% static 'styletransfer/images/styles/mosaic.jpg'%}">
       <figcaption>Mosaic</figcaption>
     </figure>
 
+    <input type="radio" name="styleOption" value="starry-night" style="position:relative; top:222px;">
     <figure>
       <img class="style" src="{% static 'styletransfer/images/styles/starry-night.jpg'%}">
       <figcaption>Starry Night</figcaption>
     </figure>
 
+    <input type="radio" name="styleOption" value="udnie" style="position:relative; top:263px;">
     <figure>
       <img class="style" src="{% static 'styletransfer/images/styles/udnie.jpg'%}">
       <figcaption>Udnie</figcaption>
     </figure>
-  </div>
-
-  <div class="style-selection">
-    <input type="radio" name="styleOption" value="candy">Candy<br>
-    <input type="radio" name="styleOption" value="mosaic">Mosaic<br>
-    <input type="radio" name="styleOption" value="starry-night">Starry Night<br>
-    <input type="radio" name="styleOption" value="udnie">Udnie<br>
   </div>
 
   {% if errorStyle %}

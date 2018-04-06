@@ -10,7 +10,6 @@ from .util import pipeline
 
 
 # TODO store result photos
-# TODO use the images instead of radio buttons
 
 
 def indexView(request):
