@@ -2,9 +2,16 @@ import subprocess
 from shlex import split
 from collections import namedtuple
 from functools import reduce
+import datetime;
 
 
 proc_output = namedtuple('proc_output', 'stdout stderr')
+
+
+def makeCopyOfOutput():
+    t = datetime.datetime.now().timestamp()
+    with open('../outputs/%s.jpg' % t, 'wb') as f:
+        f.writelines(open('static/styletransfer/images/output.jpg', 'rb').readlines())
 
 
 def pipeline(starter_command, *commands):
