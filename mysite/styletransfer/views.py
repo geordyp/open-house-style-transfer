@@ -6,16 +6,17 @@ import re
 import base64
 import os.path
 from PIL import Image
+from .util import pipeline
 
 
-def IndexView(request):
+def indexView(request):
     """
     Tells the user about the project and how it works
     """
     return render(request, 'styletransfer/index.html')
 
 
-def FormView(request):
+def formView(request):
     """
     Displays the form for user input
     """
@@ -49,16 +50,15 @@ def FormView(request):
         content_rgb_image = Image.open('static/styletransfer/images/input.jpg').convert('RGB')
         content_rgb_image.save('static/styletransfer/images/input.jpg')
 
-        #########################
-        # TODO run style transfer, create result file
-        #########################
+        # run style transfer, create output file
+        pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/mosaic.pth --output-image static/styletransfer/images/output.jpg --cuda 0")
 
         return HttpResponseRedirect(reverse('views.result', args=()))
     else:
         return render(request, 'styletransfer/form.html')
 
 
-def ResultView(request):
+def resultView(request):
     """
     Displays the result of the style transfer
     """
