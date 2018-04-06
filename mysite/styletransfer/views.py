@@ -5,6 +5,7 @@ from django.urls import reverse
 import re
 import base64
 import os.path
+from PIL import Image
 
 
 def IndexView(request):
@@ -31,13 +32,11 @@ def FormView(request):
 
         if 'snapShot' in request.POST and request.POST['snapShot'] != "":
             imageData = re.search(r'base64,(.*)', request.POST['snapShot']).group(1)
-            userImage = open('static/styletransfer/images/input.jpg', 'wb')
-            userImage.write(base64.b64decode(imageData))
-            userImage.close()
+            with open('static/styletransfer/images/input.jpg', 'wb') as f:
+                f.write(base64.b64decode(imageData))
         elif 'fileUpload' in request.FILES and request.FILES['fileUpload'] is not None:
-            userImage = open('static/styletransfer/images/input.jpg', 'wb')
-            userImage.writelines(request.FILES['fileUpload'].readlines())
-            userImage.close()
+            with open('static/styletransfer/images/input.jpg', 'wb') as f:
+                f.writelines(request.FILES['fileUpload'].readlines())
         else:
             return render(request,
                           'styletransfer/form.html',
@@ -45,6 +44,10 @@ def FormView(request):
                             'errorImage':"Error: Please take a picture or upload an image"
                           },
                           status=400)
+
+        # convert image to RGB
+        content_rgb_image = Image.open('static/styletransfer/images/input.jpg').convert('RGB')
+        content_rgb_image.save('static/styletransfer/images/input.jpg')
 
         #########################
         # TODO run style transfer, create result file
