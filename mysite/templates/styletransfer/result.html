@@ -19,6 +19,8 @@
   <img class="result-output" src={% static 'styletransfer/images/output.jpg' %}>
 </div>
 <br>
+<h3>Content Image&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;Style Image&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;Result Image</h3>
+<br>
 <h2>Try a Different Style</h2>
 <form class="upload-image" enctype="multipart/form-data" action="{% url 'views.result' %}" method="post">{% csrf_token %}
   <div class="style-options">
