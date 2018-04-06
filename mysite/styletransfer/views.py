@@ -51,7 +51,7 @@ def formView(request):
         content_rgb_image.save('static/styletransfer/images/input.jpg')
 
         # run style transfer, create output file
-        pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/mosaic.pth --output-image static/styletransfer/images/output.jpg --cuda 0")
+        pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/%s.pth --output-image static/styletransfer/images/output.jpg --cuda 0" % request.POST['styleOption'])
 
         return HttpResponseRedirect(reverse('views.result', args=()))
     else:
