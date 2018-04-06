@@ -8,9 +8,12 @@ import datetime;
 proc_output = namedtuple('proc_output', 'stdout stderr')
 
 
-def makeCopyOfOutput():
+def makeCopys():
     t = datetime.datetime.now().timestamp()
-    with open('../outputs/%s.jpg' % t, 'wb') as f:
+    with open('../inputs-outputs/in-%s.jpg' % t, 'wb') as f:
+        f.writelines(open('static/styletransfer/images/input.jpg', 'rb').readlines())
+
+    with open('../inputs-outputs/out-%s.jpg' % t, 'wb') as f:
         f.writelines(open('static/styletransfer/images/output.jpg', 'rb').readlines())
 
 

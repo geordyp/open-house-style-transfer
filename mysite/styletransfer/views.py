@@ -6,7 +6,7 @@ import re
 import base64
 import os.path
 from PIL import Image
-from .util import pipeline, makeCopyOfOutput
+from .util import pipeline, makeCopys
 
 
 def indexView(request):
@@ -52,7 +52,7 @@ def formView(request):
 
         # run style transfer, create output file
         pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/%s.pth --output-image static/styletransfer/images/output.jpg --cuda 0" % request.POST['styleOption'])
-        makeCopyOfOutput()
+        makeCopys()
 
         return HttpResponseRedirect(reverse('views.result', args=()))
     else:
@@ -68,6 +68,7 @@ def resultView(request):
         # run style transfer, create output file
         style = request.session['styleSelected'] = request.POST['styleOption']
         pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/%s.pth --output-image static/styletransfer/images/output.jpg --cuda 0" % style)
+        makeCopys()
 
     p = "static/styletransfer/images/"
     if style is not None and os.path.isfile(p + "input.jpg") and os.path.isfile(p + "output.jpg"):
