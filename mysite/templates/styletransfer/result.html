@@ -19,6 +19,47 @@
   <img class="result-output" src={% static 'styletransfer/images/output.jpg' %}>
 </div>
 <br>
+<h2>Try a Different Style</h2>
+<form class="upload-image" enctype="multipart/form-data" action="{% url 'views.result' %}" method="post">{% csrf_token %}
+  <div class="style-options">
+    <figure>
+      <img class="style" src="{% static 'styletransfer/images/styles/candy.jpg'%}">
+      <figcaption>Candy</figcaption>
+    </figure>
+
+    <figure>
+      <img class="style" src="{% static 'styletransfer/images/styles/mosaic.jpg'%}">
+      <figcaption>Mosaic</figcaption>
+    </figure>
+
+    <figure>
+      <img class="style" src="{% static 'styletransfer/images/styles/starry-night.jpg'%}">
+      <figcaption>Starry Night</figcaption>
+    </figure>
+
+    <figure>
+      <img class="style" src="{% static 'styletransfer/images/styles/udnie.jpg'%}">
+      <figcaption>Udnie</figcaption>
+    </figure>
+  </div>
+
+  <div class="style-selection">
+    <input type="radio" name="styleOption" value="candy">Candy<br>
+    <input type="radio" name="styleOption" value="mosaic">Mosaic<br>
+    <input type="radio" name="styleOption" value="starry-night">Starry Night<br>
+    <input type="radio" name="styleOption" value="udnie">Udnie<br>
+  </div>
+
+  {% if error %}
+    <div class="error">{{error}}</div>
+    <br>
+  {% endif %}
+
+  <button class="submit" style="font-size:20px;">Submit</button>
+</form>
+
+<a href="{% url 'views.form' %}">Take Another Picture</a>
+<br>
 <a href="{% url 'views.index' %}">Back to the Beginning</a>
-<!-- Allow the user to simply select another style and run again -->
+
 {% endblock %}

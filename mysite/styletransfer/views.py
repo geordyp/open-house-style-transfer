@@ -70,12 +70,18 @@ def resultView(request):
     """
     Displays the result of the style transfer
     """
+    style = str(request.session['styleSelected'])
+    if request.method == 'POST':
+        # run style transfer, create output file
+        style = request.POST['styleOption']
+        pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/%s.pth --output-image static/styletransfer/images/output.jpg --cuda 0" % style)
+
     p = "static/styletransfer/images/"
-    if 'styleSelected' in request.session and os.path.isfile(p + "input.jpg") and os.path.isfile(p + "output.jpg"):
+    if style is not None and os.path.isfile(p + "input.jpg") and os.path.isfile(p + "output.jpg"):
         return render(request,
                       'styletransfer/result.html',
                       {
-                        'style':str(request.session['styleSelected'])
+                        'style':style
                       })
     else:
         return HttpResponseRedirect(reverse('views.form', args=()))
