@@ -9,7 +9,7 @@ from PIL import Image
 from .util import pipeline
 
 
-# TODO Overall style changes: make capture image smaller, tyle options larger
+# TODO store result photos
 # TODO use the images instead of radio buttons
 
 

@@ -4,15 +4,15 @@
 {% block 'body' %}
 {% load staticfiles %}
 
-<h2>First, we need an image of you</h2>
+<h2>First, we need a Content Image.</h2>
 <!-- Get a snapshot of the user-->
 <div class="capture">
   <video class="webcam-video" id="player" autoplay></video>
   <button class="capture-button" id="capture" style="font-size:15px;">Capture</button>
-  <canvas class="capture-preview" id="canvas" width=420 height=320></canvas>
+  <canvas class="capture-preview" id="canvas" width=350 height=250></canvas>
 </div>
 
-<form class="upload-image" enctype="multipart/form-data" action="{% url 'views.form' %}" method="post">{% csrf_token %}
+<form enctype="multipart/form-data" action="{% url 'views.form' %}" method="post">{% csrf_token %}
 
   <!-- Camera image data stored here -->
   <input type="text" name="snapShot" id="hidden_image_field" hidden>
@@ -29,10 +29,10 @@
   {% endif %}
 
   <br>
-  <h2>Now, please select the image with the style you wish to transfer</h2>
+  <h2>Now, please select a Style Image.</h2>
 
   <div class="style-options">
-    <figure>
+    <figure class="style-figure">
       <img class="style" src="{% static 'styletransfer/images/styles/candy.jpg'%}">
       <figcaption>Candy</figcaption>
     </figure>
