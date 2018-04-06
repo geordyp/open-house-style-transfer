@@ -6,7 +6,6 @@
 
 <h2>First, we need an image of you</h2>
 <!-- Get a snapshot of the user-->
-<!-- TODO remove bottom bar from video player -->
 <div class="capture">
   <video class="webcam-video" id="player" autoplay></video>
   <button class="capture-button" id="capture" style="font-size:15px;">Capture</button>
@@ -15,6 +14,7 @@
 
 <form class="upload-image" enctype="multipart/form-data" action="{% url 'views.form' %}" method="post">{% csrf_token %}
 
+  <!-- Camera image data stored here -->
   <input type="text" name="snapShot" id="hidden_image_field" hidden>
 
   <!-- Image upload incase camera isn't working -->
@@ -53,7 +53,6 @@
     </figure>
   </div>
 
-  <br>
   <div class="style-selection">
     <input type="radio" name="styleOption" value="candy">Candy<br>
     <input type="radio" name="styleOption" value="mosaic">Mosaic<br>
@@ -66,7 +65,6 @@
     <br>
   {% endif %}
 
-  <br>
   <button class="submit" style="font-size:20px;">Submit</button>
 </form>
 

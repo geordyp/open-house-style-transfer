@@ -9,6 +9,14 @@ from PIL import Image
 from .util import pipeline
 
 
+# TODO add "same picture different style" button to result page
+# TODO add info to index
+# TODO add explanation to results page
+# TODO make capture image smaller
+# TODO make style options larger
+# TODO use the images instead of radio buttons
+
+
 def indexView(request):
     """
     Tells the user about the project and how it works
