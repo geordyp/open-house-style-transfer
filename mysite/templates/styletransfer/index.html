@@ -3,9 +3,13 @@
 {% extends 'styletransfer/base.html' %}
 {% block 'body' %}
 
-<p>project explanation</p>
-<p>generative adversarial networks</p>
-<p>style transfer</p>
+<h2>About the Project</h2>
+<p>We've created an application which allows users to use style transfer on their own images.</p>
+<h4>What is Style Transfer?</h4>
+<p>It's used to transfer the style of one image onto another. In our application, we transfer the style of artwork onto selfies.</p>
+<h4>How does it work?</h4>
+<p>A convolutional neural network is trained to produce images somewhere between the Content Image and the Style Image.</p>
+<p>This application uses an existing implementation which can be found <a href='https://github.com/abhiskk/fast-neural-style'>here</a>.</p>
 <br>
-<a href="{% url 'views.form' %}">Begin</a>
+<button onclick='window.location="{% url 'views.form' %}";' style='font-size:16px'>Begin</button>
 {% endblock %}
