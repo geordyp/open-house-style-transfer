@@ -66,7 +66,7 @@ def resultView(request):
     style = str(request.session['styleSelected'])
     if request.method == 'POST' and request.POST['styleOption'] != style:
         # run style transfer, create output file
-        style = request.POST['styleOption']
+        style = request.session['styleSelected'] = request.POST['styleOption']
         pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/%s.pth --output-image static/styletransfer/images/output.jpg --cuda 0" % style)
 
     p = "static/styletransfer/images/"
