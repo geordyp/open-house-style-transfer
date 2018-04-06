@@ -2,13 +2,14 @@
 
 {% extends 'styletransfer/base.html' %}
 {% block 'body' %}
+{% load staticfiles %}
 
 <h2>First, we need an image of you</h2>
 <!-- Get a snapshot of the user-->
 <!-- TODO remove bottom bar from video player -->
 <div class="capture">
   <video class="webcam-video" id="player" autoplay></video>
-  <button class="capture-button" id="capture" style="font-size:20px;">Capture</button>
+  <button class="capture-button" id="capture" style="font-size:15px;">Capture</button>
   <canvas class="capture-preview" id="canvas" width=420 height=320></canvas>
 </div>
 
@@ -32,25 +33,32 @@
 
   <div class="style-options">
     <figure>
-      <img src="http://via.placeholder.com/200x280">
-      <figcaption>Mona Lisa</figcaption>
+      <img class="style" src="{% static 'styletransfer/images/styles/candy.jpg'%}">
+      <figcaption>Candy</figcaption>
     </figure>
 
     <figure>
-      <img src="http://via.placeholder.com/200x280">
-      <figcaption>Vincent van Gogh</figcaption>
+      <img class="style" src="{% static 'styletransfer/images/styles/mosaic.jpg'%}">
+      <figcaption>Mosaic</figcaption>
     </figure>
 
     <figure>
-      <img src="http://via.placeholder.com/200x280">
-      <figcaption>Avatar Na'vi</figcaption>
+      <img class="style" src="{% static 'styletransfer/images/styles/starry-night.jpg'%}">
+      <figcaption>Starry Night</figcaption>
     </figure>
 
-    <div class="style-selection">
-      <input type="radio" name="styleOption" value="monalisa">Mona Lisa<br>
-      <input type="radio" name="styleOption" value="vangogh">Vincent van Gogh<br>
-      <input type="radio" name="styleOption" value="navi">Na'vi<br>
-    </div>
+    <figure>
+      <img class="style" src="{% static 'styletransfer/images/styles/udnie.jpg'%}">
+      <figcaption>Udnie</figcaption>
+    </figure>
+  </div>
+
+  <br>
+  <div class="style-selection">
+    <input type="radio" name="styleOption" value="candy">Candy<br>
+    <input type="radio" name="styleOption" value="mosaic">Mosaic<br>
+    <input type="radio" name="styleOption" value="starry-night">Starry Night<br>
+    <input type="radio" name="styleOption" value="udnie">Udnie<br>
   </div>
 
   {% if errorStyle %}
