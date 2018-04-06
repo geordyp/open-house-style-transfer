@@ -63,11 +63,11 @@ def resultView(request):
     Displays the result of the style transfer
     """
     p = "static/styletransfer/images/"
-    if 'styleSelected' in request.session and os.path.isfile(p + "input.jpg"):# and os.path.isfile(p + "output.png"):
+    if 'styleSelected' in request.session and os.path.isfile(p + "input.jpg") and os.path.isfile(p + "output.jpg"):
         return render(request,
                       'styletransfer/result.html',
                       {
-                        'style':request.session['styleSelected']
+                        'style':str(request.session['styleSelected'])
                       })
     else:
         return HttpResponseRedirect(reverse('views.form', args=()))

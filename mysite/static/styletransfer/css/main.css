@@ -79,3 +79,11 @@ a {
 .error {
   color: red;
 }
+
+.result-style {
+  width: 180px;
+  position: relative;
+  bottom: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

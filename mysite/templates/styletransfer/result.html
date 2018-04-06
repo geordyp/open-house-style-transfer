@@ -7,10 +7,16 @@
 <h2>Result</h2>
 <div class="result">
   <img class="result-input" src={% static 'styletransfer/images/input.jpg' %}>
-  <!-- <img class="result-style" src={% static 'styletransfer/images/{{style}}.jpg' %}> -->
-  <img src="http://via.placeholder.com/200x280">
+  {% if style == "candy" %}
+    <img class="result-style" src={% static 'styletransfer/images/styles/candy.jpg' %}>
+  {% elif style == "mosaic" %}
+    <img class="result-style" src={% static 'styletransfer/images/styles/mosaic.jpg' %}>
+  {% elif style == "starry-night" %}
+    <img class="result-style" src={% static 'styletransfer/images/styles/starry-night.jpg' %}>
+  {% else %}
+    <img class="result-style" src={% static 'styletransfer/images/styles/udnie.jpg' %}>
+  {% endif %}
   <img class="result-output" src={% static 'styletransfer/images/output.jpg' %}>
-  <!-- <img src="http://via.placeholder.com/420x320"> -->
 </div>
 <br>
 <a href="{% url 'views.index' %}">Back to the Beginning</a>
