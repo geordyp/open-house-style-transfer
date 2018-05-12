@@ -13,8 +13,15 @@ def indexView(request):
     """
     Tells the user about the project and how it works
     """
-    return render(request, 'styletransfer/index.html')
-
+    if 'styleSelected' in request.session:
+        return render(request,
+                      'styletransfer/index.html',
+                      {
+                        'style':request.session['styleSelected']
+                      })
+    else:
+        return render(request,
+                      'styletransfer/index.html')
 
 def formView(request):
     """
@@ -52,7 +59,7 @@ def formView(request):
 
         # run style transfer, create output file
         pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/%s.pth --output-image static/styletransfer/images/output.jpg --cuda 0" % request.POST['styleOption'])
-        makeCopys()
+        # makeCopys()
 
         return HttpResponseRedirect(reverse('views.result', args=()))
     else:
@@ -68,7 +75,7 @@ def resultView(request):
         # run style transfer, create output file
         style = request.session['styleSelected'] = request.POST['styleOption']
         pipeline("python3 styletransfer/nn/neural_style.py eval --content-image static/styletransfer/images/input.jpg --model static/styletransfer/models/%s.pth --output-image static/styletransfer/images/output.jpg --cuda 0" % style)
-        makeCopys()
+        # makeCopys()
 
     p = "static/styletransfer/images/"
     if style is not None and os.path.isfile(p + "input.jpg") and os.path.isfile(p + "output.jpg"):
