@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  font-size:18px;
+}
+
 .header-bar {
   width: 100%;
   height: 40px;
@@ -15,32 +19,50 @@ a {
   text-align: center;
 }
 
-.header-title {
-  color: white;
-  font-size: 20px;
+#header-title {
+  position: relative;
+  top: 2px;
+  font-size: 30px;
   font-weight: bold;
-  padding-top: 7px;
+  color: white;
 }
 
-.header-link:link {
-  text-decoration: inherit;
-  color: inherit;
-}
-
-.header-link:visited {
-  text-decoration: inherit;
-  color: inherit;
+#header-title:link,
+#header-title:visited,  {
+  color: white;
 }
 
 .container {
-  padding-top: 25px;
-  padding-left: 50px;
-  width: 1050px;
+  width: 90%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.overview-example {
+  width: 100%;
+  text-align: center;
+}
+
+#img-example {
+  width: 30%;
+  vertical-align: top;
+}
+
+#img-example-style {
+  width: 30%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#a-begin {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .capture {
   height: 260px;
   width: 100%;
+  text-align: center;
 }
 
 .capture-button {
@@ -59,8 +81,20 @@ a {
   margin-left: 50px;
 }
 
+.choose-style {
+  width: 100%;
+}
+
 .style-options {
   display: inline-flex;
+}
+
+.style-preview {
+  width: 100%;
+}
+
+#candy, #mosaic, #starry-night, #udnie {
+  margin-top: 15px;
 }
 
 figure {

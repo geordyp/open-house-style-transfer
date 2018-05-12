@@ -1,0 +1,42 @@
+WINDOWS SETUP
+installed git
+from https://git-scm.com
+
+installed miniconda with python 3.6
+from https://conda.io/miniconda.html
+
+**************** DIDN'T END UP WORKING ************
+installed CUDA toolkit
+from https://developer.nvidia.com/cuda-downloads
+C:\Users\KAOS4_3\AppData\Local\Temp\CUDA
+***************************************************
+
+installed pytorch
+from https://pytorch.org/
+C:\Users\KAOS4_3\Miniconda3\Scripts\conda.exe install pytorch-cpu -c pytorch
+C:\Users\KAOS4_3\Miniconda3\Scripts\pip.exe install torchvision
+
+installed scipy
+C:\Users\KAOS4_3\Miniconda3\Scripts\conda.exe install -c anaconda scipy
+
+dowloaded cnn repo and training data
+https://github.com/abhiskk/fast-neural-style
+http://cocodataset.org/#download (2014 Train images [83K/13GB])
+
+
+COMMANDS
+C:\Users\KAOS4_3\Miniconda3\python.exe neural_style.py eval --content-image images\content-images\input.jpg --model training\models\mosaic.pth --output-image images\output-images\output.jpg --cuda 0
+
+C:\Users\KAOS4_3\Miniconda3\python.exe neural_style.py train --dataset training\training-data\ --style-image images\style-images\scream.jpg --vgg-model-dir training\vgg\ --save-model-dir training\models\ --epochs 2 --cuda 0
+
+
+NOTES
+ensure the model file has a valid saved name (line 111 of neural_style.py)
+without CUDA, it takes about 2 hours per 1000 images
+progess should output like this:
+    Thu May 10 06:07:39 2018        Epoch 1:        [2000/13000]    content: 358904.875000  style: 2461223.500000   total: 2820128.250000
+
+
+LINKS
+https://github.com/abhiskk/fast-neural-style
+https://github.com/geordyp/open-house-style-transfer

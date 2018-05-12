@@ -2,14 +2,20 @@
 
 {% extends 'styletransfer/base.html' %}
 {% block 'body' %}
+{% load staticfiles %}
 
-<h1>About the Project</h1>
-<p>We've created an application which allows users to use style transfer on their own images.</p>
-<h3>What is Style Transfer?</h3>
-<p>It's used to transfer the style of one image onto another. In our application, we transfer the style of artwork onto selfies.</p>
-<h3>How does it work?</h3>
-<p>A convolutional neural network is trained to produce images somewhere between the Content Image and the Style Image.</p>
+<h2>About This Project</h2>
+<p>This application allows users to use style transfer on their own images. <a id="a-begin" href="{% url 'views.form' %}">Try it Out</a></p>
+<h2>What is Style Transfer?</h2>
+<p>It's used to transfer the style of one image onto another. In this application, the style of artwork is transfered on your self or other provided image.</p>
+<div class="overview-example">
+  <img id="img-example" src="{% static 'styletransfer/images/example-in.jpg' %}">
+  <img id="img-example-style" src="{% static 'styletransfer/images/styles/starry-night.jpg' %}">
+  <img id="img-example" src="{% static 'styletransfer/images/example-out.jpg' %}">
+</div>
+<h2>How does it work?</h2>
+<p>A convolutional neural network is trained to produce images right in between the Content Image and the Style Image.</p>
 <p>This application uses an existing implementation which can be found <a href='https://github.com/abhiskk/fast-neural-style'>here</a>.</p>
 <br>
-<button onclick='window.location="{% url 'views.form' %}";' style='font-size:16px'>Begin</button>
+
 {% endblock %}
